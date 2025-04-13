@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚽ FIFA Player Showdown</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">⚽ FIFA Player Showdown</h1>
+
+        <div class="inputs">
+            <div class="player-input">
+                <label for="player1">Player 1:</label>
+                <input type="text" id="player1" autocomplete="off" placeholder="e.g. Lionel Messi">
+                <ul id="suggestions1" class="suggestions"></ul>
+            </div>
+
+            <div class="player-input">
+                <label for="player2">Player 2:</label>
+                <input type="text" id="player2" autocomplete="off" placeholder="e.g. Cristiano Ronaldo">
+                <ul id="suggestions2" class="suggestions"></ul>
+            </div>
+        </div>
+
+        <button class="compare-btn" onclick="comparePlayers()">Compare</button>
+
+        <label class="voice-toggle">
+            <input type="checkbox" id="voiceToggle" checked>
+            🎙️ Enable Commentary Voice
+        </label>
+
+        <div class="stadium-section">
+            <div class="overlay-content">
+                <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+                <div id="comparisonResult" class="commentary"></div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
