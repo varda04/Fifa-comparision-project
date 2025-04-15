@@ -9,36 +9,41 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title">⚽ FIFA Player Showdown</h1>
+        <div class="upper-section">
+            <h1 class="title">⚽ FIFA Player Showdown</h1>
 
-        <div class="inputs">
-            <div class="player-input">
-                <label for="player1">Player 1:</label>
-                <input type="text" id="player1" autocomplete="off" placeholder="e.g. Lionel Messi">
-                <ul id="suggestions1" class="suggestions"></ul>
+            <div class="inputs">
+                <div class="player-input">
+                    <label for="player1">Player 1:</label>
+                    <input type="text" id="player1" autocomplete="off" placeholder="e.g. Lionel Messi">
+                    <ul id="suggestions1" class="suggestions"></ul>
+                </div>
+
+                <div class="player-input">
+                    <label for="player2">Player 2:</label>
+                    <input type="text" id="player2" autocomplete="off" placeholder="e.g. Cristiano Ronaldo">
+                    <ul id="suggestions2" class="suggestions"></ul>
+                </div>
             </div>
 
-            <div class="player-input">
-                <label for="player2">Player 2:</label>
-                <input type="text" id="player2" autocomplete="off" placeholder="e.g. Cristiano Ronaldo">
-                <ul id="suggestions2" class="suggestions"></ul>
+            <button class="compare-btn" id="compareButton" onclick="comparePlayers()">Compare</button>
+
+            <label class="voice-toggle">
+                <input type="checkbox" id="voiceToggle" checked>
+                🎙️ Enable Commentary Voice
+            </label>
+        </div>
+        <div class="chart-section">
+            <div class="chart-container">
+                <canvas id="radarChart"></canvas>
             </div>
         </div>
-
-        <button class="compare-btn" onclick="comparePlayers()">Compare</button>
-
-        <label class="voice-toggle">
-            <input type="checkbox" id="voiceToggle" checked>
-            🎙️ Enable Commentary Voice
-        </label>
-
         <div class="stadium-section">
-            <div class="overlay-content">
-                <div class="chart-container">
-                    <canvas id="radarChart"></canvas>
-                </div>
-                <div id="comparisonResult" class="commentary"></div>
-            </div>
+            
+            <div id="comparisonResult" class="commentary"></div>
+            <div id="only-slide-this" class="slide-in">
+                <img src="{{ url_for('static', filename='images/commentator1.png') }}" alt="Description">
+            </div>            
         </div>
         
     </div>

@@ -1,7 +1,48 @@
+// global vars
+let canSlide= false;
+
 document.addEventListener("DOMContentLoaded", function() {
     setupAutocomplete("player1", "suggestions1");
     setupAutocomplete("player2", "suggestions2");
 });
+
+// document.getElementById("compareButton").addEventListener("click", () => {
+//     canSlide= true;
+// });
+
+const oneElement = document.getElementById("only-slide-this");
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && canSlide) {
+            entry.target.classList.add('visible');
+        } else{
+            entry.target.classList.remove('visible');
+        }
+    });
+});
+
+observer.observe(oneElement);
+
+const stadiumSections = document.getElementsByClassName("stadium-section"); // Get all stadium-section elements
+
+const observer2 = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible'); // Add the 'visible' class when the element is in view
+        } else {
+            entry.target.classList.remove('visible'); // Shrink back when not visible
+        }
+    });
+}, {
+    threshold: 0.3 // Trigger the intersection when 50% of the element is in view (optional, can be adjusted)
+});
+
+// Observe each stadium-section element
+Array.from(stadiumSections).forEach(stadium => {
+    observer2.observe(stadium);
+});
+
 
 function setupAutocomplete(inputId, suggestionsId) {
     let input = document.getElementById(inputId);
@@ -48,6 +89,7 @@ async function comparePlayers() {
     }
 
     try {
+        canSlide= true;
         let response = await fetch(`/compare?player1=${player1}&player2=${player2}`);
         let data = await response.json();
 
@@ -68,7 +110,7 @@ async function comparePlayers() {
         renderRadarChart(player1, player2, attributes, player1Values, player2Values);
 
         // Show AI-generated summary **after** radar chart
-        document.getElementById("comparisonResult").innerHTML = `<h2>AI Summary</h2><p>${data.comparison}</p>`;
+        document.getElementById("comparisonResult").innerHTML = formatGroqResponse(data.comparison);
         if (document.getElementById("voiceToggle").checked) {
             speakCommentary(data.comparison);
         }        
@@ -78,6 +120,28 @@ async function comparePlayers() {
         document.getElementById("comparisonResult").innerHTML = "<p>Something went wrong.</p>";
     }
 }
+
+function formatGroqResponse(text) {
+    // Remove markdown markers
+    let cleaned = text
+        .replace(/\*\*/g, '') // remove bold markers
+        .replace(/\*/g, '')   // remove list asterisks
+        .replace(/\n+/g, '\n') // remove excess newlines
+        .trim();
+
+    // Split into lines
+    let lines = cleaned.split('\n');
+    lines = lines.slice(1);
+
+    // Filter and format lines into clean pointwise list
+    const points = lines
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .map(line => `• ${line}`);
+
+    return points.join('\n');
+}
+
 
 // Function to render the radar chart
 function renderRadarChart(player1, player2, labels, player1Values, player2Values) {

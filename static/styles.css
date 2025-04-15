@@ -7,11 +7,32 @@ body {
     padding: 0;
 }
 
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* This ensures your sections stack vertically */
+}
+
+
+.upper-section {
+    background-image: url('/static/images/pitch_dramatic2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.chart-section {
+    background-image: url('/static/images/paper.png');
+    background-size: cover;
+    min-height: 70vh;
+}
+
 .stadium-section {
     background-image: url('/static/images/pitch.jpg'); /* Your football field image */
     background-size: 40%;  /* Initially, the image covers 40% of the section */
     background-position: center;
     background-attachment: fixed;
+    background-repeat: no-repeat;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -26,21 +47,13 @@ body {
     background-size: 100%; /* When the section is in view, zoom in to cover the whole area */
 }
 
-.overlay-content {
-    background-color: rgba(0, 0, 0, 0.7); /* Slight dark tint for readability */
-    border-radius: 20px;
-    display: flex;
-    flex-direction: row;
-    gap: 3rem;
-    padding: 2rem;
-    color: white;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    transform: scale(0.95);
-    transition: transform 0.6s ease;
-}
 
 .stadium-section.visible .overlay-content {
     transform: scale(1);
+}
+
+.title, .player-input, .voice-toggle{
+    color: #000;
 }
 
 #player1, #player2 {
@@ -83,3 +96,17 @@ body {
 #suggestions1.visible, #suggestions2.visible {
     visibility: visible;
 }
+
+/* Initial state, element is off-screen */
+#only-slide-this {
+    transform: translateX(+100%); /* Start from left off-screen */
+    opacity: 0;
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+/* When the element becomes visible (after scrolling and button click) */
+#only-slide-this.visible {
+    transform: translateX(0); /* Move to its normal position */
+    opacity: 1; /* Fade in */
+}
+
