@@ -1,4 +1,6 @@
-***#FIFA Player Showdown***
+#***FIFA Player Showdown***
+
+
 ![pitch_corner_dramatic](https://github.com/user-attachments/assets/a12e206f-0c77-453c-9acf-7edbbaffddaf)
 
 FIFA Player Showdown allows users to compare two football players based on their statistics, showcasing a radar chart and side-by-side stats summary. This project is a full-stack web application built using HTML, CSS, JavaScript, and Groq for processing player comparison data.
