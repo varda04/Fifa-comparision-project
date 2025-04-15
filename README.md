@@ -1,4 +1,4 @@
-#***FIFA Player Showdown***
+# ***FIFA Player Showdown***
 
 
 ![pitch_corner_dramatic](https://github.com/user-attachments/assets/a12e206f-0c77-453c-9acf-7edbbaffddaf)
@@ -29,7 +29,7 @@ Follow these steps to set up and run this project locally.
 - Flask  
 - A code editor like Visual Studio Code
 
-##⚽ Installation
+## ⚽ Installation
 Clone the repository:
 `git clone https://github.com/your-username/fifa-player-showdown.git`
 Navigate into the project directory:
@@ -41,5 +41,5 @@ Start the Flask server:
 Open your browser and go to:
 http://127.0.0.1:5000
 
-⚽##Static Assets
+## ⚽ Static Assets
 The project contains static assets like images and stylesheets, served by Flask. These files are placed in the /static folder.
