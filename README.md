@@ -21,9 +21,6 @@ This project provides a platform for users to compare two football players, such
 - **Backend**: Python Flask (for API to fetch player data)  
 - **Static Files**: Images, CSS, JavaScript files served via Flask
 
-## ⚽ Setup Instructions  
-Follow these steps to set up and run this project locally.
-
 ## ⚽ Prerequisites  
 - Python 3.x  
 - Flask  
